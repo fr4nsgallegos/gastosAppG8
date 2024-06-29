@@ -5,10 +5,21 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DBAdmin {
-  initDatabase() async {
+  Database? myDatabase;
+
+  Future<Database?> checkDatabase() async {
+    if (myDatabase == null) {
+      //AÚN NO SE HA CREADO MYDATABASE
+      myDatabase = await initDatabase();
+    } else {
+      return myDatabase;
+    }
+  }
+
+  Future<Database> initDatabase() async {
     Directory directory = await getApplicationDocumentsDirectory();
     String pathDatabase = join(directory.path, "PagosDB.db");
-    openDatabase(
+    return await openDatabase(
       pathDatabase,
       version: 1,
       onCreate: (Database db, int version) {
