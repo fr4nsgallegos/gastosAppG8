@@ -1,6 +1,32 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
+  Widget busquedaWidget() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextField(
+        decoration: InputDecoration(
+          hintText: "Buscar por título",
+          hintStyle: TextStyle(
+            color: Colors.black.withOpacity(0.4),
+            fontSize: 14,
+          ),
+          filled: true,
+          fillColor: Colors.black.withOpacity(0.05),
+          contentPadding: EdgeInsets.all(16),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(16),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(16),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -73,6 +99,7 @@ class HomePage extends StatelessWidget {
                             color: Colors.black45,
                           ),
                         ),
+                        busquedaWidget(),
                         ListTile(
                           title: Text("Compras en el super"),
                           subtitle: Text("14/01/2025 23:21"),
@@ -83,7 +110,7 @@ class HomePage extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 75,
-                )
+                ),
               ],
             ),
           ],
