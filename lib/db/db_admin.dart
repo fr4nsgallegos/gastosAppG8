@@ -11,9 +11,10 @@ class DBAdmin {
     if (myDatabase == null) {
       //AÚN NO SE HA CREADO MYDATABASE
       myDatabase = await initDatabase();
-    } else {
-      return myDatabase;
     }
+    print("aqui");
+    return myDatabase;
+
     // myDatabase ??= await initDatabase();
   }
 
@@ -37,7 +38,7 @@ class DBAdmin {
 
   insertarGasto() async {
     Database? db = await checkDatabase();
-    db!.insert(
+    int res = await db!.insert(
       "GASTOS",
       {
         "title": "Compras en el mercado",
@@ -46,5 +47,16 @@ class DBAdmin {
         "type": "Alimentos",
       },
     );
+    print(res);
+  }
+
+  obtenerGastos() async {
+    Database? db = await checkDatabase();
+    print(".....................");
+    // print(db);
+    print(".....................");
+
+    List<Map<String, dynamic>> data = await db!.query("GASTOS");
+    print(data);
   }
 }
