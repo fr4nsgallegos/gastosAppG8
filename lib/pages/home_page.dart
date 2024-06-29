@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gastosappg8/db/db_admin.dart';
 import 'package:gastosappg8/widgets/register_modal.dart';
 
 class HomePage extends StatefulWidget {
@@ -65,7 +66,9 @@ class _HomePageState extends State<HomePage> {
               children: [
                 InkWell(
                   onTap: () {
-                    showRegisterModal();
+                    // showRegisterModal();
+                    DBAdmin dbAdmin = DBAdmin();
+                    dbAdmin.initDatabase();
                   },
                   child: Container(
                     color: Colors.black,
@@ -73,7 +76,6 @@ class _HomePageState extends State<HomePage> {
                     width: double.infinity,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      // crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Icon(
                           Icons.add,
