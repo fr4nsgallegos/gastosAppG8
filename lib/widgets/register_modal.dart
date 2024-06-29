@@ -31,6 +31,7 @@ class _RegisterModalState extends State<RegisterModal> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Text(
           "Registra el gasto",
