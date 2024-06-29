@@ -1,13 +1,25 @@
 import 'package:flutter/material.dart';
 
-class FielModalWidget extends StatelessWidget {
+class FieldModalWidget extends StatelessWidget {
+  String hint;
+  TextEditingController controller;
+  bool isNumberKeryboard;
+  FieldModalWidget({
+    required this.hint,
+    required this.controller,
+    this.isNumberKeryboard = false,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
       child: TextField(
+        controller: controller,
+        keyboardType:
+            isNumberKeryboard ? TextInputType.number : TextInputType.text,
         decoration: InputDecoration(
-          hintText: "Ingresa el título",
+          hintText: hint,
           hintStyle: TextStyle(
             fontSize: 14,
             color: Colors.black.withOpacity(0.4),

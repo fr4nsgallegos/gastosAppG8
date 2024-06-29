@@ -11,6 +11,23 @@ class _RegisterModalState extends State<RegisterModal> {
   TextEditingController _priceController = TextEditingController();
   TextEditingController _typeController = TextEditingController();
 
+  _buildButtonAdd() {
+    return SizedBox(
+      width: double.infinity,
+      height: 50,
+      child: ElevatedButton(
+        onPressed: () {},
+        child: Text("Añadir"),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.black,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,9 +38,14 @@ class _RegisterModalState extends State<RegisterModal> {
         SizedBox(
           height: 16,
         ),
-        FielModalWidget(),
-        FielModalWidget(),
-        FielModalWidget(),
+        FieldModalWidget(
+            hint: "Ingresa el título", controller: _productController),
+        FieldModalWidget(
+            hint: "Ingresa el monto",
+            controller: _priceController,
+            isNumberKeryboard: true),
+        FieldModalWidget(hint: "Ingresa el tipo", controller: _typeController),
+        _buildButtonAdd(),
       ],
     );
   }
