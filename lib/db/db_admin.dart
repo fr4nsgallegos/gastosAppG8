@@ -14,6 +14,7 @@ class DBAdmin {
     } else {
       return myDatabase;
     }
+    // myDatabase ??= await initDatabase();
   }
 
   Future<Database> initDatabase() async {
@@ -30,6 +31,19 @@ class DBAdmin {
                 datetime TEXT, 
                 type TEXT
               )""");
+      },
+    );
+  }
+
+  insertarGasto() async {
+    Database? db = await checkDatabase();
+    db!.insert(
+      "GASTOS",
+      {
+        "title": "Compras en el mercado",
+        "price": 1200.50,
+        "datetime": "12/12/2024",
+        "type": "Alimentos",
       },
     );
   }

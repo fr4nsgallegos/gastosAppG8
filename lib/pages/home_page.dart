@@ -55,10 +55,17 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  DBAdmin dbAdmin = DBAdmin();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            dbAdmin.insertarGasto();
+          },
+        ),
         body: Stack(
           children: [
             Column(
@@ -67,8 +74,7 @@ class _HomePageState extends State<HomePage> {
                 InkWell(
                   onTap: () {
                     // showRegisterModal();
-                    DBAdmin dbAdmin = DBAdmin();
-                    dbAdmin.initDatabase();
+                    dbAdmin.checkDatabase();
                   },
                   child: Container(
                     color: Colors.black,
