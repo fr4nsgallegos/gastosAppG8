@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:gastosappg8/widgets/register_modal.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   Widget busquedaWidget() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -27,6 +33,27 @@ class HomePage extends StatelessWidget {
     );
   }
 
+  showRegisterModal() {
+    showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          // width: double.infinity,
+          padding: EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(34),
+              topRight: Radius.circular(34),
+            ),
+          ),
+          child: RegisterModal(),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -38,7 +65,7 @@ class HomePage extends StatelessWidget {
               children: [
                 InkWell(
                   onTap: () {
-                    print("Hola");
+                    showRegisterModal();
                   },
                   child: Container(
                     color: Colors.black,
