@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gastosappg8/utils/data_general.dart';
 import 'package:gastosappg8/widgets/field_modal_widget.dart';
+import 'package:gastosappg8/widgets/item_type_widget.dart';
 
 class RegisterModal extends StatefulWidget {
   @override
@@ -11,7 +13,7 @@ class _RegisterModalState extends State<RegisterModal> {
   TextEditingController _priceController = TextEditingController();
   TextEditingController _typeController = TextEditingController();
   TextEditingController _dateController = TextEditingController();
-
+  String typeSelected = "Alimentos";
   _buildButtonAdd() {
     return SizedBox(
       width: double.infinity,
@@ -89,6 +91,27 @@ class _RegisterModalState extends State<RegisterModal> {
               // print("ES UNA FECHA");
               showDateTimePicker();
             },
+          ),
+          SizedBox(
+            height: 16,
+          ),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            alignment: WrapAlignment.center,
+            children: types
+                .map(
+                  (e) => ItemTypeWidget(
+                    data: e,
+                    isSelected: e["name"] == typeSelected,
+                    tap: () {
+                      typeSelected = e["name"];
+                      setState(() {});
+                      print(typeSelected);
+                    },
+                  ),
+                )
+                .toList(),
           ),
           _buildButtonAdd(),
         ],
