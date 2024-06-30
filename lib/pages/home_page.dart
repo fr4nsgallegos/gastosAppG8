@@ -66,7 +66,8 @@ class _HomePageState extends State<HomePage> {
             // dbAdmin.insertarGasto();
             // DBAdmin().obtenerGastos();
             // dbAdmin.obtenerGastos();
-            DBAdmin().updGasto();
+            // DBAdmin().updGasto();
+            DBAdmin().delGasto();
           },
         ),
         body: Stack(

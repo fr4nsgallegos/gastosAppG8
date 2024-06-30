@@ -72,15 +72,21 @@ class DBAdmin {
   //UPDATE GASTO
   updGasto() async {
     Database? db = await _checkDatabase();
-    db!.update(
+    int res = await db!.update(
         "GASTOS",
         {
           "title": "ACTUALIZADO",
           "price": 10.1,
           "type": "Banco",
         },
-        where: "id=1");
+        where: "id=2");
+    print(res);
   }
 
   //DELETE
+  delGasto() async {
+    Database? db = await _checkDatabase();
+    int res = await db!.delete("GASTOS", where: 'id=7');
+    print(res);
+  }
 }
