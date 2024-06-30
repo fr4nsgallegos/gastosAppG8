@@ -10,6 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<GastoModel> gastos = [];
   GastoModel gasto1 = GastoModel(
       title: "TITULO", datetime: "12/1/12", price: 12, type: "Alimentos");
   Widget busquedaWidget() {
@@ -55,19 +56,31 @@ class _HomePageState extends State<HomePage> {
 
   // DBAdmin dbAdmin = DBAdmin();
 
+  Future<void> getDataFromDB() async {
+    gastos = await DBAdmin().obtenerGastos();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    getDataFromDB();
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            // dbAdmin.insertarGasto();
-            DBAdmin().obtenerGastos();
-            // dbAdmin.obtenerGastos();
-            // DBAdmin().updGasto();
-            // DBAdmin().delGasto();
-          },
-        ),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () {
+        //     // dbAdmin.insertarGasto();
+        //     DBAdmin().obtenerGastos();
+        //     // dbAdmin.obtenerGastos();
+        //     // DBAdmin().updGasto();
+        //     // DBAdmin().delGasto();
+        //   },
+        // ),
         body: Stack(
           children: [
             Column(
@@ -139,11 +152,22 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         busquedaWidget(),
-                        ListTile(
-                          title: Text("Compras en el super"),
-                          subtitle: Text("14/01/2025 23:21"),
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: gastos.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return ItemGastoWidget(
+                                gasto: gastos[index],
+                              );
+                            },
+                          ),
                         ),
-                        ItemGastoWidget(gasto: gasto1),
+
+                        // ListTile(
+                        //   title: Text("Compras en el super"),
+                        //   subtitle: Text("14/01/2025 23:21"),
+                        // ),
+                        // ItemGastoWidget(gasto: gasto1),
                       ],
                     ),
                   ),
