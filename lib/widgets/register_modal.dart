@@ -17,7 +17,7 @@ class _RegisterModalState extends State<RegisterModal> {
   _buildButtonAdd() {
     return SizedBox(
       width: double.infinity,
-      height: 50,
+      height: 40,
       child: ElevatedButton(
         onPressed: () {},
         child: Text("Añadir"),
@@ -68,53 +68,55 @@ class _RegisterModalState extends State<RegisterModal> {
           topRight: Radius.circular(34),
         ),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            "Registra el gasto",
-          ),
-          SizedBox(
-            height: 16,
-          ),
-          FieldModalWidget(
-              hint: "Ingresa el título", controller: _productController),
-          FieldModalWidget(
-              hint: "Ingresa el monto",
-              controller: _priceController,
-              isNumberKeryboard: true),
-          FieldModalWidget(
-            hint: "Selecciona una fecha",
-            controller: _dateController,
-            isDatePicker: true,
-            function: () {
-              // print("ES UNA FECHA");
-              showDateTimePicker();
-            },
-          ),
-          SizedBox(
-            height: 16,
-          ),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            alignment: WrapAlignment.center,
-            children: types
-                .map(
-                  (e) => ItemTypeWidget(
-                    data: e,
-                    isSelected: e["name"] == typeSelected,
-                    tap: () {
-                      typeSelected = e["name"];
-                      setState(() {});
-                      print(typeSelected);
-                    },
-                  ),
-                )
-                .toList(),
-          ),
-          _buildButtonAdd(),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "Registra el gasto",
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            FieldModalWidget(
+                hint: "Ingresa el título", controller: _productController),
+            FieldModalWidget(
+                hint: "Ingresa el monto",
+                controller: _priceController,
+                isNumberKeryboard: true),
+            FieldModalWidget(
+              hint: "Selecciona una fecha",
+              controller: _dateController,
+              isDatePicker: true,
+              function: () {
+                // print("ES UNA FECHA");
+                showDateTimePicker();
+              },
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                alignment: WrapAlignment.center,
+                children: types
+                    .map(
+                      (e) => ItemTypeWidget(
+                        data: e,
+                        isSelected: e["name"] == typeSelected,
+                        tap: () {
+                          typeSelected = e["name"];
+                          setState(() {});
+                          print(typeSelected);
+                        },
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
+            _buildButtonAdd(),
+          ],
+        ),
       ),
     );
   }
