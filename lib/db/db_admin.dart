@@ -7,6 +7,13 @@ import 'package:sqflite/sqflite.dart';
 class DBAdmin {
   Database? myDatabase;
 
+  static final DBAdmin _instance = DBAdmin._();
+  DBAdmin._();
+
+  factory DBAdmin() {
+    return _instance;
+  }
+
   Future<Database?> checkDatabase() async {
     if (myDatabase == null) {
       //AÚN NO SE HA CREADO MYDATABASE
