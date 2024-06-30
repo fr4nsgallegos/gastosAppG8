@@ -10,6 +10,7 @@ class _RegisterModalState extends State<RegisterModal> {
   TextEditingController _productController = TextEditingController();
   TextEditingController _priceController = TextEditingController();
   TextEditingController _typeController = TextEditingController();
+  TextEditingController _dateController = TextEditingController();
 
   _buildButtonAdd() {
     return SizedBox(
@@ -30,24 +31,41 @@ class _RegisterModalState extends State<RegisterModal> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          "Registra el gasto",
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(34),
+          topRight: Radius.circular(34),
         ),
-        SizedBox(
-          height: 16,
-        ),
-        FieldModalWidget(
-            hint: "Ingresa el título", controller: _productController),
-        FieldModalWidget(
-            hint: "Ingresa el monto",
-            controller: _priceController,
-            isNumberKeryboard: true),
-        FieldModalWidget(hint: "Ingresa el tipo", controller: _typeController),
-        _buildButtonAdd(),
-      ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            "Registra el gasto",
+          ),
+          SizedBox(
+            height: 16,
+          ),
+          FieldModalWidget(
+              hint: "Ingresa el título", controller: _productController),
+          FieldModalWidget(
+              hint: "Ingresa el monto",
+              controller: _priceController,
+              isNumberKeryboard: true),
+          FieldModalWidget(
+            hint: "Selecciona una fecha",
+            controller: _dateController,
+            isDatePicker: true,
+            function: () {
+              print("ES UNA FECHA");
+            },
+          ),
+          _buildButtonAdd(),
+        ],
+      ),
     );
   }
 }

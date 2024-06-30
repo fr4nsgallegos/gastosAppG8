@@ -4,10 +4,14 @@ class FieldModalWidget extends StatelessWidget {
   String hint;
   TextEditingController controller;
   bool isNumberKeryboard;
+  bool isDatePicker;
+  VoidCallback? function;
   FieldModalWidget({
     required this.hint,
     required this.controller,
     this.isNumberKeryboard = false,
+    this.isDatePicker = false,
+    this.function,
   });
 
   @override
@@ -15,6 +19,8 @@ class FieldModalWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
       child: TextField(
+        onTap: function,
+        readOnly: isDatePicker,
         controller: controller,
         keyboardType:
             isNumberKeryboard ? TextInputType.number : TextInputType.text,

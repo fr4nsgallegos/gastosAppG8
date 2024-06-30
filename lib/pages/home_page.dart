@@ -38,17 +38,11 @@ class _HomePageState extends State<HomePage> {
     showModalBottomSheet(
       backgroundColor: Colors.transparent,
       context: context,
+      isScrollControlled: true,
       builder: (BuildContext context) {
-        return Container(
-          // width: double.infinity,
-          padding: EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(34),
-              topRight: Radius.circular(34),
-            ),
-          ),
+        return Padding(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: RegisterModal(),
         );
       },
@@ -61,15 +55,15 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            // dbAdmin.insertarGasto();
-            // DBAdmin().obtenerGastos();
-            // dbAdmin.obtenerGastos();
-            // DBAdmin().updGasto();
-            DBAdmin().delGasto();
-          },
-        ),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () {
+        //     // dbAdmin.insertarGasto();
+        //     // DBAdmin().obtenerGastos();
+        //     // dbAdmin.obtenerGastos();
+        //     // DBAdmin().updGasto();
+        //     DBAdmin().delGasto();
+        //   },
+        // ),
         body: Stack(
           children: [
             Column(
@@ -77,10 +71,10 @@ class _HomePageState extends State<HomePage> {
               children: [
                 InkWell(
                   onTap: () {
-                    // showRegisterModal();
+                    showRegisterModal();
                     // dbAdmin.checkDatabase();
                     // dbAdmin.insertarGasto();
-                    DBAdmin().insertarGasto();
+                    // DBAdmin().insertarGasto();
                   },
                   child: Container(
                     color: Colors.black,
