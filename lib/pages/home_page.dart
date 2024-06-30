@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  DBAdmin dbAdmin = DBAdmin();
+  // DBAdmin dbAdmin = DBAdmin();
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,9 @@ class _HomePageState extends State<HomePage> {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             // dbAdmin.insertarGasto();
-            dbAdmin.obtenerGastos();
+            // DBAdmin().obtenerGastos();
+            // dbAdmin.obtenerGastos();
+            DBAdmin().updGasto();
           },
         ),
         body: Stack(
@@ -76,7 +78,8 @@ class _HomePageState extends State<HomePage> {
                   onTap: () {
                     // showRegisterModal();
                     // dbAdmin.checkDatabase();
-                    dbAdmin.insertarGasto();
+                    // dbAdmin.insertarGasto();
+                    DBAdmin().insertarGasto();
                   },
                   child: Container(
                     color: Colors.black,

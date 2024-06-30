@@ -14,10 +14,10 @@ class DBAdmin {
     return _instance;
   }
 
-  Future<Database?> checkDatabase() async {
+  Future<Database?> _checkDatabase() async {
     if (myDatabase == null) {
       //AÚN NO SE HA CREADO MYDATABASE
-      myDatabase = await initDatabase();
+      myDatabase = await _initDatabase();
     }
     print("aqui");
     return myDatabase;
@@ -25,7 +25,7 @@ class DBAdmin {
     // myDatabase ??= await initDatabase();
   }
 
-  Future<Database> initDatabase() async {
+  Future<Database> _initDatabase() async {
     Directory directory = await getApplicationDocumentsDirectory();
     String pathDatabase = join(directory.path, "PagosDB.db");
     return await openDatabase(
@@ -43,8 +43,9 @@ class DBAdmin {
     );
   }
 
+  //INSERCIÓN DE DATOS
   insertarGasto() async {
-    Database? db = await checkDatabase();
+    Database? db = await _checkDatabase();
     int res = await db!.insert(
       "GASTOS",
       {
@@ -57,8 +58,9 @@ class DBAdmin {
     print(res);
   }
 
+  //OBTENCIÓN DE DATOS
   obtenerGastos() async {
-    Database? db = await checkDatabase();
+    Database? db = await _checkDatabase();
     List<Map<String, dynamic>> data = await db!.query("GASTOS");
     // List<Map<String, dynamic>> data =
     //     await db!.rawQuery("SELECT TITLE FROM GASTOS WHERE TYPE='Otros'");
@@ -66,4 +68,19 @@ class DBAdmin {
     // await db!.query("GASTOS", where: "TYPE='Otros'");
     print(data);
   }
+
+  //UPDATE GASTO
+  updGasto() async {
+    Database? db = await _checkDatabase();
+    db!.update(
+        "GASTOS",
+        {
+          "title": "ACTUALIZADO",
+          "price": 10.1,
+          "type": "Banco",
+        },
+        where: "id=1");
+  }
+
+  //DELETE
 }
