@@ -45,18 +45,20 @@ class DBAdmin {
   }
 
   //INSERCIÓN DE DATOS
-  insertarGasto() async {
+  Future<int> insertarGasto(Map<String, dynamic> data) async {
     Database? db = await _checkDatabase();
     int res = await db!.insert(
       "GASTOS",
-      {
-        "title": "Compra de medias",
-        "price": 10.50,
-        "datetime": "12/12/2024",
-        "type": "Otros",
-      },
+      data,
+      // {
+      //   "title": "Compra de medias",
+      //   "price": 10.50,
+      //   "datetime": "12/12/2024",
+      //   "type": "Otros",
+      // },
     );
     print(res);
+    return res;
   }
 
   //OBTENCIÓN DE DATOS

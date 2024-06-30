@@ -51,7 +51,9 @@ class _HomePageState extends State<HomePage> {
           child: RegisterModal(),
         );
       },
-    );
+    ).then((value) {
+      getDataFromDB();
+    });
   }
 
   // DBAdmin dbAdmin = DBAdmin();

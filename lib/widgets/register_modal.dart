@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gastosappg8/db/db_admin.dart';
 import 'package:gastosappg8/utils/data_general.dart';
 import 'package:gastosappg8/widgets/field_modal_widget.dart';
 import 'package:gastosappg8/widgets/item_type_widget.dart';
@@ -19,7 +20,28 @@ class _RegisterModalState extends State<RegisterModal> {
       width: double.infinity,
       height: 40,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Map<String, dynamic> gastoMap = {
+            "title": _productController.text,
+            "price": _priceController.text,
+            "datetime": _dateController.text,
+            "type": typeSelected,
+          };
+          DBAdmin().insertarGasto(gastoMap).then((value) {
+            if (value > 0) {
+              //SE HA INSERTADO CORRECTAMENTE
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                    backgroundColor: Colors.cyan,
+                    behavior: SnackBarBehavior.floating,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16)),
+                    content: Text("Se ha registrado correctamente")),
+              );
+              Navigator.pop(context);
+            }
+          });
+        },
         child: Text("Añadir"),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.black,
