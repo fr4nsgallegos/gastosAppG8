@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gastosappg8/db/db_admin.dart';
+import 'package:gastosappg8/models/gasto_model.dart';
+import 'package:gastosappg8/widgets/item_gasto_widget.dart';
 import 'package:gastosappg8/widgets/register_modal.dart';
 
 class HomePage extends StatefulWidget {
@@ -8,6 +10,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  GastoModel gasto1 = GastoModel(
+      title: "TITULO", datetime: "12/1/12", price: 12, type: "Alimentos");
   Widget busquedaWidget() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -55,15 +59,15 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // floatingActionButton: FloatingActionButton(
-        //   onPressed: () {
-        //     // dbAdmin.insertarGasto();
-        //     // DBAdmin().obtenerGastos();
-        //     // dbAdmin.obtenerGastos();
-        //     // DBAdmin().updGasto();
-        //     DBAdmin().delGasto();
-        //   },
-        // ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            // dbAdmin.insertarGasto();
+            DBAdmin().obtenerGastos();
+            // dbAdmin.obtenerGastos();
+            // DBAdmin().updGasto();
+            // DBAdmin().delGasto();
+          },
+        ),
         body: Stack(
           children: [
             Column(
@@ -139,6 +143,7 @@ class _HomePageState extends State<HomePage> {
                           title: Text("Compras en el super"),
                           subtitle: Text("14/01/2025 23:21"),
                         ),
+                        ItemGastoWidget(gasto: gasto1),
                       ],
                     ),
                   ),

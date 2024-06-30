@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:gastosappg8/models/gasto_model.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -59,14 +60,20 @@ class DBAdmin {
   }
 
   //OBTENCIÓN DE DATOS
-  obtenerGastos() async {
+  Future<List<GastoModel>> obtenerGastos() async {
     Database? db = await _checkDatabase();
     List<Map<String, dynamic>> data = await db!.query("GASTOS");
+
+    List<GastoModel> gastosList =
+        data.map((e) => GastoModel.fromDB(e)).toList();
+
     // List<Map<String, dynamic>> data =
     //     await db!.rawQuery("SELECT TITLE FROM GASTOS WHERE TYPE='Otros'");
     // List<Map<String, dynamic>> data =
     // await db!.query("GASTOS", where: "TYPE='Otros'");
-    print(data);
+    // print(data);
+    // print(gastosList);
+    return gastosList;
   }
 
   //UPDATE GASTO

@@ -10,4 +10,11 @@ class GastoModel {
     required this.datetime,
     required this.type,
   });
+
+  factory GastoModel.fromDB(Map<String, dynamic> data) => GastoModel(
+        title: data["title"],
+        price: data["price"],
+        datetime: data["datetime"],
+        type: data["type"],
+      );
 }
