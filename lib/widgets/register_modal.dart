@@ -29,6 +29,32 @@ class _RegisterModalState extends State<RegisterModal> {
     );
   }
 
+  showDateTimePicker() async {
+    DateTime? datePicker = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2022),
+      lastDate: DateTime(2030),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+            data: ThemeData.light().copyWith(
+              dialogTheme: DialogTheme(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25),
+                ),
+              ),
+              colorScheme: ColorScheme.light(primary: Colors.black),
+            ),
+            child: child!);
+      },
+    );
+    _dateController.text = datePicker.toString();
+    // if (datePicker != null) {
+    //   // final DateFormat
+    // }
+    print(_dateController.text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -60,7 +86,8 @@ class _RegisterModalState extends State<RegisterModal> {
             controller: _dateController,
             isDatePicker: true,
             function: () {
-              print("ES UNA FECHA");
+              // print("ES UNA FECHA");
+              showDateTimePicker();
             },
           ),
           _buildButtonAdd(),
