@@ -41,10 +41,10 @@ class DBAdmin {
     int res = await db!.insert(
       "GASTOS",
       {
-        "title": "Compras en el mercado",
-        "price": 1200.50,
+        "title": "Compra de medias",
+        "price": 10.50,
         "datetime": "12/12/2024",
-        "type": "Alimentos",
+        "type": "Otros",
       },
     );
     print(res);
@@ -52,11 +52,11 @@ class DBAdmin {
 
   obtenerGastos() async {
     Database? db = await checkDatabase();
-    print(".....................");
-    // print(db);
-    print(".....................");
-
     List<Map<String, dynamic>> data = await db!.query("GASTOS");
+    // List<Map<String, dynamic>> data =
+    //     await db!.rawQuery("SELECT TITLE FROM GASTOS WHERE TYPE='Otros'");
+    // List<Map<String, dynamic>> data =
+    // await db!.query("GASTOS", where: "TYPE='Otros'");
     print(data);
   }
 }

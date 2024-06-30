@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            dbAdmin.insertarGasto();
+            // dbAdmin.insertarGasto();
             dbAdmin.obtenerGastos();
           },
         ),
@@ -75,7 +75,8 @@ class _HomePageState extends State<HomePage> {
                 InkWell(
                   onTap: () {
                     // showRegisterModal();
-                    dbAdmin.checkDatabase();
+                    // dbAdmin.checkDatabase();
+                    dbAdmin.insertarGasto();
                   },
                   child: Container(
                     color: Colors.black,
