@@ -154,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.black45,
                           ),
                         ),
-                        Text(S.of(context).hello),
+                        Text(S.of(context).helloAlquien("JUAN")),
                         busquedaWidget(),
                         Expanded(
                           child: ListView.builder(
