@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gastosappg8/db/db_admin.dart';
+import 'package:gastosappg8/models/gasto_model.dart';
 import 'package:gastosappg8/utils/data_general.dart';
 import 'package:gastosappg8/widgets/field_modal_widget.dart';
 import 'package:gastosappg8/widgets/item_type_widget.dart';
@@ -21,13 +22,19 @@ class _RegisterModalState extends State<RegisterModal> {
       height: 40,
       child: ElevatedButton(
         onPressed: () {
-          Map<String, dynamic> gastoMap = {
-            "title": _productController.text,
-            "price": _priceController.text,
-            "datetime": _dateController.text,
-            "type": typeSelected,
-          };
-          DBAdmin().insertarGasto(gastoMap).then((value) {
+          GastoModel gasto = GastoModel(
+              title: _productController.text,
+              price: double.parse(_priceController.text),
+              datetime: _dateController.text,
+              type: _typeController.text);
+
+          // Map<String, dynamic> gastoMap = {
+          //   "title": _productController.text,
+          //   "price": _priceController.text,
+          //   "datetime": _dateController.text,
+          //   "type": typeSelected,
+          // };
+          DBAdmin().insertarGasto(gasto).then((value) {
             if (value > 0) {
               //SE HA INSERTADO CORRECTAMENTE
               ScaffoldMessenger.of(context).showSnackBar(
